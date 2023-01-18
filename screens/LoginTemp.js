@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, TextInput} from 'react
 
 const LoginTemp = () => {
     const [UserName, setUserName] = useState();
-    const [UserId, setUserName] = useState();
+    const [UserId, setUserId] = useState();
     const [DriverName, setDriverName] = useState();
     const [DriverId, setDriverId] = useState();
     const [isUser, setisUser] = useState(true)
