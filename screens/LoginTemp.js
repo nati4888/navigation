@@ -5,22 +5,44 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, TextInput } from 'reac
 const LoginTemp = () => {
     const [Name, setName] = useState();
     const [Id, setId] = useState();
-    const [NamePlaceHolder, setNamePlaceHolder] = useState();
-    const [IdPlaceHolder, setIdPlaceHolder] = useState();
+    const [NamePlaceHolder, setNamePlaceHolder] = useState("");
+    const [IdPlaceHolder, setIdPlaceHolder] = useState("");
     const [isUser, setisUser] = useState(true)
+    const SignIn = () => {
+        return (
+            <View style={styles.Signin}>
+                <TextInput onChangeText={(Text) => { setName(Text) }} placeholder={NamePlaceHolder}></TextInput>
+                <TextInput onChangeText={(Text) => { setId(Text) }} placeholder={IdPlaceHolder}></TextInput>
+                <TouchableOpacity onPress={() => { }} style={{justifyContent:'center'}}><Text>Submite</Text></TouchableOpacity>
+            </View>
+        )
+    }
+    //{isUser ? <DriverSignup /> : <UserSignup />}
+
+    const UserSignup = () => {
+        return (
+            <View style={styles.Signin}>
+                <TextInput onChangeText={(User) => { setUserName(User) }} placeholder='-- ---- ---'></TextInput>
+                <TextInput onChangeText={(User) => { setUserId(User) }} placeholder='Enter your id'></TextInput>
+                <TouchableOpacity onPress={() => { }} style={{}}><Text>Submite</Text></TouchableOpacity>
+            </View>
+        )
+    }
 
     useEffect(() => {
-        SwitchFunction();
+        SwitchFunction(true);
     }, []);
 
-    const SwitchFunction = () => {
-        if (isUser) {
+    const SwitchFunction = (x) => {
+        if (x) {
             setIdPlaceHolder('User Id');
             setNamePlaceHolder('User Name');
+            setisUser(true)
         }
         else {
             setIdPlaceHolder("Drver Id");
             setNamePlaceHolder('Driver Name');
+            setisUser(false) 
         }
     }
 
@@ -29,15 +51,15 @@ const LoginTemp = () => {
         <View style={styles.container}>
             <View>
                 <View style={styles.swicth}>
-                    <TouchableOpacity onPress={() => { setisUser(true) }} style={{ backgroundColor: "black" }}><Text>User</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { setisUser(false) }} style={{ backgroundColor: "red" }}><Text>Driver</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { SwitchFunction(true) }} style={{ backgroundColor: "black" }}><Text>User</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { SwitchFunction(false) }} style={{ backgroundColor: "red" }}><Text>Driver</Text></TouchableOpacity>
                 </View>
                 <Text style={styles.Headertext}>HeaderTitle</Text>
             </View>
             <View style={styles.Signin}>
-                <TextInput onChangeText={(Text) => { setName(Text) }} placeholder={NamePlaceHolder}></TextInput>
-                <TextInput onChangeText={(Text) => { setId(Text) }} placeholder={IdPlaceHolder}></TextInput>
-                <TouchableOpacity onPress={() => { }} style={{}}><Text>Submite</Text></TouchableOpacity>
+                <TextInput  style={styles.SigninTextInput} onChangeText={(Text) => { setName(Text) }} placeholder={NamePlaceHolder}></TextInput>
+                <TextInput style={styles.SigninTextInput} onChangeText={(Text) => { setId(Text) }} placeholder={IdPlaceHolder}></TextInput>
+                <TouchableOpacity style={styles.SignInBtn} onPress={() => { }}><Text>Submite</Text></TouchableOpacity>
             </View>
             <View style={styles.Signup}>
                 <View style={styles.textPrivate}>
@@ -92,8 +114,38 @@ const styles = StyleSheet.create({
     },
     Signin: {
         margin: 5,
-        borderWidth: 1,
+        padding:10,
+        borderRightWidth: 3,
+        borderBottomWidth:4,
         borderStyle: 'solid',
+        borderBottomRightRadius:25,
+        elevation:50,
+        width:'100%',
+        height:'40%',
+        justifyContent:'center',
+        alignItems:'center',
+        borderColor:'#FAEBD7',
+        backgroundColor:'#F0F8FF'
+
+    },
+    SigninTextInput:{
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderBottomRightRadius:25,
+        width:'80%',
+        paddingVertical:5,
+        marginVertical:10
+
+    },
+    SignInBtn:{
+       // borderBottomRightRadius:5,
+        borderStyle:'solid',
+        width:'40%',
+        alignItems:'center',
+        justifyContent:'center',
+        elevation:20,
+        borderWidth:1
+
     },
     Signup: {
         marginHorizontal: 5,
